@@ -10,6 +10,7 @@ from random import randint
 class AroundtheWorld():
     def __init__(self):
         self.chance_it, self.shot_percentage = self._get_command_argument()
+        self.chance_first_half = False
         self.shots = ["start", "right_corner", "right_side",
                  "middle", "left_side", "left_corner", "end"]
         self.shot_percentage_location = {
@@ -23,14 +24,18 @@ class AroundtheWorld():
         }
             
     def _get_command_argument(self):
+        chance = ""
         if (len(sys.argv) < 3):
-            print("Error: requires parameters whether you want to chance it or not (true/false) and shot percentage")
+            print("Error. Parameters: chance it (all|half|none) and shot percentage (0 - 100)")
             exit(0)
-        elif (sys.argv[1] == ("True" or "true" or "t" or "T")):
-            return True, int(sys.argv[2])
+        if (sys.argv[1] in ("all", "half", "none")):
+            chance = sys.argv[1]
         else:
-            return  False, int(sys.argv[2])
-                  
+            raise Exception("invalid parameter")
+        
+        return chance, int(sys.argv[2])
+        
+            
     def get_next_location(self, current_location):
         """
         Returns next shot. If current_shot is "end" 
@@ -46,6 +51,15 @@ class AroundtheWorld():
         """
         return (randint(1, 100) <= self.shot_percentage_location[current_location])
 
+    def on_first_half(current_location):
+        """
+        Returns true if player is still on a shot
+        on the first half of the court.
+        Assumes "middle" shot is on second half.
+        """
+        return (self.shots[self.shots.index(current_location)] < 4)
+        
+
     def play(self):
         current_location = "start"
         turns = 0
@@ -53,12 +67,12 @@ class AroundtheWorld():
 
         while (current_location != "win"):
             shot = self.made_shot(current_location)
-            if (self.chance_it):
+            if (self.chance_it == "all" or (self.chance_it == "half" and self.on_first_half(current_location)))):
                 shot = shot or self.made_shot(current_location) # shoot again
             turns += 1
             if (shot):
                 current_location = self.get_next_location(current_location)
-            elif (self.chance_it): # player chanced it and missed both
+            elif (self.chance_it is ("all" or "half")): # player chanced it and missed both
                 current_location = "start"
         return turns
             
