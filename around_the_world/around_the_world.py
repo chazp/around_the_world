@@ -51,13 +51,13 @@ class AroundtheWorld():
         """
         return (randint(1, 100) <= self.shot_percentage_location[current_location])
 
-    def on_first_half(current_location):
+    def on_first_half(self, current_location):
         """
         Returns true if player is still on a shot
         on the first half of the court.
         Assumes "middle" shot is on second half.
         """
-        return (self.shots[self.shots.index(current_location)] < 4)
+        return (self.shots.index(current_location) < 7)
         
 
     def play(self):
@@ -67,12 +67,12 @@ class AroundtheWorld():
 
         while (current_location != "win"):
             shot = self.made_shot(current_location)
-            if (self.chance_it == "all" or (self.chance_it == "half" and self.on_first_half(current_location)))):
+            if (self.chance_it == "all" or (self.chance_it == "half" and self.on_first_half(current_location))):
                 shot = shot or self.made_shot(current_location) # shoot again
             turns += 1
             if (shot):
                 current_location = self.get_next_location(current_location)
-            elif (self.chance_it is ("all" or "half")): # player chanced it and missed both
+            elif (self.chance_it == "all" or (self.chance_it == "half" and self.on_first_half(current_location))): # player chanced it and missed both
                 current_location = "start"
         return turns
             
@@ -85,5 +85,6 @@ total = 0.0
 for i in range(runs):
     total += test.play()
 print(total / runs)
+
 
 
