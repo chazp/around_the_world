@@ -21,5 +21,5 @@ For each shot percentage and variation on "chance", 100,000 games were simulated
 
 ![](https://raw.github.com/chazp/around_the_world/master/pictures/Data2.png)
 
-The data and graph show that a person whose shot is below 
+The data and graph show that a person whose shot is **below 60% should never "chance" it.** A person who shoots **between 60% and 80% should "chance" it for the first half of the shots.** A player shooting **above 80% should always "chance" it** (though at that point all three options are very close).
 
