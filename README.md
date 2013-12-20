@@ -15,8 +15,11 @@ The data table shows the average number of turns per game if the person playing
 has the given shot percentage and the three options on whether they should "chance"
 it or not
 
+For each shot percentage and variation on "chance", 100,000 games were simulated.
+
 ![](https://raw.github.com/chazp/around_the_world/master/pictures/Data1.png)
 
 ![](https://raw.github.com/chazp/around_the_world/master/pictures/Data2.png)
 
+The data and graph show that a person whose shot is below 
 
