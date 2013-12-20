@@ -9,7 +9,11 @@ Complete rules:
 http://en.wikipedia.org/wiki/Variations_of_basketball#Around_the_World
 
 ## Simulation ##
-This program simulates games of Around the World in order to determine whether a player with a specific shot percentage should always chance it, never chance it, or only chance it for the first half of the shots.  
+This program simulates games of Around the World in order to determine whether a player with a specific shot percentage should always chance it, never chance it, or only chance it for the first half of the shots. 
+
+The data table shows the average number of turns per game if the person playing 
+has the given shot percentage and the three options on whether they should "chance"
+it or not
 
 ![](https://raw.github.com/chazp/around_the_world/master/pictures/Data1.png)
 
